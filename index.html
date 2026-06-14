@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda de contactos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="contenedor">
+    <header class="encabezado">
+      <div>
+        <span class="etiqueta">Organiza tu día</span>
+        <h1>Agenda de contactos</h1>
+        <p>Todos tus contactos importantes, siempre a la mano.</p>
+      </div>
+      <div class="contador">
+        <strong id="totalContactos">0</strong>
+        <span>contactos</span>
+      </div>
+    </header>
+
+    <section class="panel">
+      <div class="formulario-contenedor">
+        <div class="titulo-seccion">
+          <span class="icono-titulo">+</span>
+          <div>
+            <h2>Nuevo contacto</h2>
+            <p>Completa los datos para agregarlo a tu agenda.</p>
+          </div>
+        </div>
+
+        <form id="formularioContacto" novalidate>
+          <label for="nombre">Nombre completo</label>
+          <div class="campo">
+            <span>👤</span>
+            <input type="text" id="nombre" placeholder="Ej. Ana Martínez" maxlength="60" autocomplete="name">
+          </div>
+          <small class="error" id="errorNombre"></small>
+
+          <label for="telefono">Teléfono</label>
+          <div class="campo">
+            <span>☎</span>
+            <input type="tel" id="telefono" placeholder="Ej. 987 654 321" maxlength="20" autocomplete="tel">
+          </div>
+          <small class="error" id="errorTelefono"></small>
+
+          <label for="correo">Correo electrónico</label>
+          <div class="campo">
+            <span>✉</span>
+            <input type="email" id="correo" placeholder="Ej. ana@correo.com" maxlength="80" autocomplete="email">
+          </div>
+          <small class="error" id="errorCorreo"></small>
+
+          <button type="submit" class="boton-principal">
+            <span>+</span>
+            Guardar contacto
+          </button>
+        </form>
+      </div>
+
+      <div class="lista-contenedor">
+        <div class="barra-lista">
+          <div>
+            <h2>Mis contactos</h2>
+            <p id="resumenContactos">Aún no hay contactos guardados.</p>
+          </div>
+          <div class="buscador">
+            <span>⌕</span>
+            <input type="search" id="busqueda" placeholder="Buscar contacto..." autocomplete="off">
+          </div>
+        </div>
+
+        <div id="listaContactos" class="lista-contactos"></div>
+
+        <div id="estadoVacio" class="estado-vacio">
+          <div class="ilustracion-vacia">⌕</div>
+          <h3>Tu agenda está vacía</h3>
+          <p>Agrega tu primer contacto usando el formulario.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="notificacion" class="notificacion" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
