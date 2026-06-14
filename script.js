@@ -11,9 +11,6 @@ const notificacion = document.getElementById("notificacion");
 let contactos = JSON.parse(localStorage.getItem("agendaContactos")) || [];
 let temporizadorNotificacion;
 
-const normalizar = texto =>
-  texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-
 const guardarContactos = () => {
   localStorage.setItem("agendaContactos", JSON.stringify(contactos));
 };
@@ -91,8 +88,6 @@ const validarFormulario = () => {
   const valorNombre = nombre.value.trim();
   const valorTelefono = telefono.value.trim();
   const valorCorreo = correo.value.trim();
-  const correoValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const telefonoValido = /^[+\d][\d\s()-]{5,19}$/;
   let valido = true;
 
   validarCampo(nombre, "errorNombre", "");
@@ -104,12 +99,12 @@ const validarFormulario = () => {
     valido = false;
   }
 
-  if (!telefonoValido.test(valorTelefono)) {
+  if (!validarTelefono(valorTelefono)) {
     validarCampo(telefono, "errorTelefono", "Ingresa un teléfono válido.");
     valido = false;
   }
 
-  if (!correoValido.test(valorCorreo)) {
+  if (!validarCorreo(valorCorreo)) {
     validarCampo(correo, "errorCorreo", "Ingresa un correo válido.");
     valido = false;
   }
