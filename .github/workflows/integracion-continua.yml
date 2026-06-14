@@ -1,0 +1,33 @@
+name: Integración continua
+
+on:
+  push:
+    branches:
+      - develop
+      - "feature/**"
+      - "release/**"
+      - "hotfix/**"
+  pull_request:
+    branches:
+      - main
+      - develop
+
+permissions:
+  contents: read
+
+jobs:
+  pruebas:
+    name: Pruebas y validaciones
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtener repositorio
+        uses: actions/checkout@v6
+      - name: Configurar Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - name: Verificar sintaxis
+        run: npm run verificar
+      - name: Ejecutar pruebas
+        run: npm test
